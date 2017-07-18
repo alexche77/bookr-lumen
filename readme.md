@@ -1,3 +1,15 @@
+# Bookr
+
+A little API project wich I used to lear the in and outs of Lumen framework.
+
+Some of the things that are implemented on this project:
+
+* Authentication via Api_token.
+* Access control
+* Relationships (one-to-many).
+* and more..
+
+
 # Lumen PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
