@@ -6,7 +6,7 @@ class Libro extends Model{
 
 
   protected $table = 'libros';
-  protected $fillable =  ['nombre','description','user_id'];
+  protected $fillable =  ['titulo','description','user_id'];
 }
 
 
