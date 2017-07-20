@@ -11,11 +11,5 @@
 |
 */
 
-$app->get('/', function () {
-    return $app->version();
-});
+$app->get('/', 'LibroController@index');
 
-//Le pasamos un parámetro normal y sencillo
-$app->get('/hola[/{nombre}]', function($nombre=null){
-	return 'Hola! '.$nombre;
-});
