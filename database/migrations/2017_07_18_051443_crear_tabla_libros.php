@@ -16,7 +16,7 @@ class CrearTablaLibros extends Migration
         Schema::create('libros', function (Blueprint $table) {
             $table->increments('id');
             $table->string('titulo')->nullable();
-            $table->string('descripcion')->nullable();
+            $table->text('descripcion')->nullable();
             $table->boolean('privado')->default(0);
             $table->integer('likes')->nullable();
             $table->integer('uploader')->unsigned();
