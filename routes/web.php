@@ -12,4 +12,7 @@
 */
 
 $app->get('/', 'LibroController@index');
+$app->group(['prefix'=>'usuario'], function ($app){
 
+    $app->post('agregar','UserController@agregar');
+});
