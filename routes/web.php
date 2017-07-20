@@ -11,9 +11,20 @@
 |
 */
 
-$app->get('/', 'LibroController@index');
-$app->group(['prefix'=>'usuario'], function ($app){
+$app->get('/','LibroController@index');
 
-    $app->post('agregar','UserController@agregar');
-    $app->post('editar/{id}','UserController@editar');
+
+
+$app->group(['prefix'=>'libros', 'middleware'=>'auth'], function ($app){
+    $app->get('/', 'LibroController@librosUsuario');
+    $app->post('/agregar','LibroController@agregar');
+    $app->get('/{id}','LibroController@ver');
+    $app->post('/{id}/editar','LibroController@editar');
+});
+$app->group(['prefix'=>'usuario', 'middleware'=>'auth'], function ($app){
+    //Esta ruta muestra los datos del usuario actual
+    $app->get('/','UserController@index');
+//    $app->post('/agregar','UserController@agregar');
+    $app->post('/editar/{id}','UserController@editar');
+    $app->get('/libros','LibroController@librosUsuario');
 });

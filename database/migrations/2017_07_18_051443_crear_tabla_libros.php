@@ -23,8 +23,7 @@ class CrearTablaLibros extends Migration
             $table->foreign('uploader')
                     ->references('id')
                     ->on('users');                    
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
+            $table->timestamps();
         });
     }
 

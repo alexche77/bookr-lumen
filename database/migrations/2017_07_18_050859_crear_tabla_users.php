@@ -20,11 +20,11 @@ class CrearTablaUsers extends Migration
             $table->string('email')->unique();
             $table->string('nombre')->nullable();
             $table->string('apellido')->nullable();;
-            $table->integer('edad')->nullable();            
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
+            $table->integer('edad')->nullable();
             $table->string('api_token',60)->unique();
             $table->rememberToken();
+            $table->timestamps();
+
         });
     }
 
