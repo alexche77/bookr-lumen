@@ -23,6 +23,15 @@ class UserController extends Controller{
         return response()->json($user);
     }
 
+    public function editar(Request $request, $id){
+        //Creamos una token random
+        $user = User::find($id);
+        $user->apellido = $request['apellido'];
+        $user->edad = $request['edad'];
+        $user->nombre = $request['nombre'];
+        $user->save();
+        return response()->json($user);
+    }
 
 
 //
