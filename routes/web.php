@@ -13,7 +13,9 @@
 
 $app->get('/','LibroController@index');
 
-
+$app->get('/key', function() {
+    return str_random(32);
+});
 
 $app->group(['prefix'=>'libros', 'middleware'=>'auth'], function ($app){
     $app->get('/', 'LibroController@librosUsuario');

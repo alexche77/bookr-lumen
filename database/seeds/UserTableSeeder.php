@@ -15,7 +15,7 @@ class UserTableSeeder extends Seeder
          DB::table('users')->delete();
          //Insertamos los datos
          DB::table('users')->insert(array(
-             array('username'=>'alexche77','password'=>Crypt::encrypt('alexche77'),'email'=>'alexche7717@gmail.com','nombre'=>'Alvaro','apellido'=>'Chévez','edad'=>'22'),             
+             array('username'=>'alexche77','password'=>Crypt::encrypt('alexche77'),'email'=>'alexche7717@gmail.com','nombre'=>'Alvaro','apellido'=>'Chévez','edad'=>'22','api_token'=>str_random(60)),             
           ));
     }
 }
