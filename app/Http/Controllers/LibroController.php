@@ -7,22 +7,6 @@ use Illuminate\Support\Facades\Auth;
 
 class LibroController extends Controller
 {
-    /*
-     *
-     *  $table->increments('id');
-            $table->string('titulo')->nullable();
-            $table->text('descripcion')->nullable();
-            $table->boolean('privado')->default(0);
-            $table->integer('likes')->nullable();
-            $table->integer('uploader')->unsigned();
-            $table->foreign('uploader')
-                    ->references('id')
-                    ->on('users');
-            $table->timestamps();
-     *
-     *
-     *
-     * */
 
     public function index(){
         $libros = Libro::where('privado',0)->get();
@@ -44,12 +28,8 @@ class LibroController extends Controller
             'descripcion' => 'required',
         ]);
 
-
-        $user = $request->user();
         //Obtenemos el ID del usuario actualmente loggeado y lo metemos como el atributo de uploader
-        $request['uploader'] = $user->id;
-        error_log($request['uploader']);
-
+        $request['uploader'] = $request->user()->id;
         $libro = Libro::create($request->all());
 
         return response()->json($libro);
@@ -57,9 +37,7 @@ class LibroController extends Controller
 
     public function editar(Request $request, $id){
         //Creamos una token random
-        error_log('Request: '.$request->input('descripcion'));
         $libro = Libro::find($id);
-
         $libro->fill($request->all());
         $libro->save();
         return response()->json($libro);
