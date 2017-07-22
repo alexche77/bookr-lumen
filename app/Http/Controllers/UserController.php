@@ -27,7 +27,16 @@ class UserController extends Controller{
         $request['api_token'] = str_random(60);
         $request['password'] = app('hash')->make($request['password']);
         $user = User::create($request->all());
-        return response()->json($user);
+         if ($user) {
+            $res['success'] = true;
+            $res['message'] = 'Success register!';
+            return response($res);
+        }
+        else{
+            $res['success'] = false;
+            $res['message'] = 'Failed to register!';
+            return response($res);
+        }
 
     }
 
