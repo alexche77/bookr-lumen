@@ -12,7 +12,6 @@ class UserController extends Controller{
 
     public function __construct()
     {
-        //  $this->middleware('auth:api');
     }
 
     public function agregar(Request $request){
@@ -23,8 +22,6 @@ class UserController extends Controller{
             'email' => 'required|email|unique:users',
         ]);
 
-        //Creamos una token random
-        $request['api_token'] = str_random(60);
         $request['password'] = app('hash')->make($request['password']);
         $user = User::create($request->all());
          if ($user) {
@@ -57,23 +54,5 @@ class UserController extends Controller{
         return response()->json(User::find(Auth::id()));
     }
 
-
-//
-//   public function authenticate(Request $request)
-//   {
-//           $this->validate($request, [
-//               'email' => 'required',
-//       'password' => 'required'
-//        ]);
-//
-//      $user = User::where('email', $request->input('email'))->first();
-//     if(Hash::check($request->input('password'), $user->password)){
-//          $apikey = base64_encode(str_random(40));
-//          User::where('email', $request->input('email'))->update(['api_key' => "$apikey"]);;
-//          return response()->json(['status' => 'success','api_key' => $apikey]);
-//      }else{
-//                  return response()->json(['status' => 'fail'],401);
-//      }
-//   }
 }
 ?>

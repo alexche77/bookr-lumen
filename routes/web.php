@@ -11,22 +11,19 @@
 |
 */
 
-$app->get('/','LibroController@index');
+$app->get('/libros','LibroController@index');
+//$app->post('/agregar','UserController@agregar');
+$app->post('/auth/login', 'AuthController@postLogin');
 
-$app->get('/key', function() {
-    return str_random(32);
-});
 
-$app->group(['prefix'=>'libros', 'middleware'=>'auth'], function ($app){
-    $app->get('/', 'LibroController@librosUsuario');
+$app->group(['prefix'=>'libros', 'middleware'=>'jwt-auth'], function ($app){
     $app->post('/agregar','LibroController@agregar');
     $app->get('/{id}','LibroController@ver');
     $app->post('/{id}/editar','LibroController@editar');
 });
-$app->group(['prefix'=>'usuario', 'middleware'=>'auth'], function ($app){
+$app->group(['prefix'=>'usuario', 'middleware'=>'jwt-auth'], function ($app){
     //Esta ruta muestra los datos del usuario actual
     $app->get('/','UserController@index');
-//    $app->post('/agregar','UserController@agregar');
     $app->post('/editar/{id}','UserController@editar');
     $app->get('/libros','LibroController@librosUsuario');
 });

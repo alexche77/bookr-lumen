@@ -21,8 +21,6 @@ class CrearTablaUsers extends Migration
             $table->string('nombre')->nullable();
             $table->string('apellido')->nullable();;
             $table->integer('edad')->nullable();
-            $table->string('api_token',60)->unique();
-            $table->rememberToken();
             $table->timestamps();
 
         });
