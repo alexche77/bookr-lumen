@@ -37,6 +37,6 @@ class User extends Model implements JWTSubject, AuthenticatableContract, Authori
    */
    public function libros()
    {
-       return $this->hasMany('App\Libros','uploader');
+       return $this->hasMany('App\Libro','uploader');
    }
 }

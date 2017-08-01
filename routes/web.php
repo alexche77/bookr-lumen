@@ -12,7 +12,7 @@
 */
 
 $app->get('/libros','LibroController@index');
-//$app->post('/agregar','UserController@agregar');
+$app->post('/auth/registrar','UserController@agregar');
 $app->post('/auth/login', 'AuthController@postLogin');
 
 

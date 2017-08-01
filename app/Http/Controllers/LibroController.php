@@ -16,8 +16,8 @@ class LibroController extends Controller
 
     //Obtenemos los libros que el usuario actual ha subido a la plataforma
     public function librosUsuario(){
-        $libros = Libro::where('uploader',Auth::id())->get();
-        return response()->json($libros);
+        $libros = Auth::user()->libros;    
+        return response()->json(['libros'=>$libros],200);
     }
 
 
@@ -32,7 +32,7 @@ class LibroController extends Controller
         $request['uploader'] = $request->user()->id;
         $libro = Libro::create($request->all());
 
-        return response()->json($libro);
+          return response()->json(['creado'=>$libro],201);
     }
 
     public function editar(Request $request, $id){
